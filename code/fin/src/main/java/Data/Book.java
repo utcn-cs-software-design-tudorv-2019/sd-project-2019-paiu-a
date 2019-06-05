@@ -1,12 +1,14 @@
 package Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "book")
 public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idBook;
+    private int idBook;
 
     @Column
     private String name;
@@ -15,11 +17,22 @@ public class Book {
     @Column
     private String aboutTheBook;
 
-    public Integer getIdBook() {
+    @OneToMany(mappedBy = "book", fetch = FetchType.EAGER)
+    private List< UserBook > userBookList;
+
+    public List<UserBook> getUserBookList() {
+        return userBookList;
+    }
+
+    public void setUserBookList(List<UserBook> userBookList) {
+        this.userBookList = userBookList;
+    }
+
+    public int getIdBook() {
         return idBook;
     }
 
-    public void setIdBook(Integer idBook) {
+    public void setIdBook(int idBook) {
         this.idBook = idBook;
     }
 

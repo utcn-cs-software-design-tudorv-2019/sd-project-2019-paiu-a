@@ -1,13 +1,15 @@
 package Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "basicUser")
 public class BasicUser {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idUser;
+    private int idUser;
 
     @Column
     private String name;
@@ -16,11 +18,47 @@ public class BasicUser {
     @Column
     private String information;
 
-    public Integer getIdUser() {
+    @OneToMany(mappedBy = "basicUser", fetch = FetchType.EAGER)
+    private List< UserMessage > userMessageList;
+
+    @OneToMany(mappedBy = "basicUser", fetch = FetchType.EAGER)
+    private List< UserBook > userBookList;
+
+    @ManyToOne
+    @JoinColumn(name = "admin")
+    @NotNull
+    private Admin admin;
+
+
+    public List<UserBook> getUserBookList() {
+        return userBookList;
+    }
+
+    public void setUserBookList(List<UserBook> userBookList) {
+        this.userBookList = userBookList;
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
+
+    public List<UserMessage> getUserMessageList() {
+        return userMessageList;
+    }
+
+    public void setUserMessageList(List<UserMessage> userMessageList) {
+        this.userMessageList = userMessageList;
+    }
+
+    public int getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(Integer idUser) {
+    public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
 

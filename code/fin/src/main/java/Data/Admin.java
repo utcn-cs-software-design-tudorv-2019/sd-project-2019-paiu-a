@@ -1,13 +1,14 @@
 package Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "admin")
 public class Admin {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idAdmin;
+    private int idAdmin;
 
     @Column
     private String name;
@@ -16,11 +17,22 @@ public class Admin {
     @Column
     private String information;
 
-    public Integer getIdAdmin() {
+    @OneToMany(mappedBy = "admin", fetch = FetchType.EAGER)
+    private List< UserMessage > userMessageList;
+
+    public List<UserMessage> getUserMessageList() {
+        return userMessageList;
+    }
+
+    public void setUserMessageList(List<UserMessage> userMessageList) {
+        this.userMessageList = userMessageList;
+    }
+
+    public int getIdAdmin() {
         return idAdmin;
     }
 
-    public void setIdAdmin(Integer idAdmin) {
+    public void setIdAdmin(int idAdmin) {
         this.idAdmin = idAdmin;
     }
 
