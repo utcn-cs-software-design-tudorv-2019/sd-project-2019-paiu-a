@@ -11,5 +11,6 @@ public interface UserMessageRepository extends JpaRepository<UserMessage, Intege
 
     List<UserMessage> findAll();
     <S extends UserMessage> S save(S entity);
+    public UserMessage findByUserName(String message);
     Optional<UserMessage> findById(Integer integer);
 }

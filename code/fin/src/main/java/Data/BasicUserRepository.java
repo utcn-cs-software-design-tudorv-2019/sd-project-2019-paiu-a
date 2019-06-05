@@ -11,7 +11,8 @@ public interface BasicUserRepository extends JpaRepository<BasicUser, Integer> {
 
     List<BasicUser> findAll();
     <S extends BasicUser> S save(S entity);
-    Optional<BasicUser> findById(Integer integer);
+    public BasicUser findByBasicUserEmail(String basicUserEmail);
+    public BasicUser findByBasicUserName(String basicUserName);
     void deleteById(int id);
     void delete(BasicUser entity);
 }

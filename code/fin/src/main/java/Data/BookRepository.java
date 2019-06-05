@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface BookRepository extends JpaRepository<Book,Integer>{
 
     public List<Book> findAll();
-    public List<Book> findAllById(Iterable<Integer> integers);
+    public Book findByBookName(String bookName);
     public <S extends Book> S save(S entity);
     public Optional<Book> findById(Integer integer);
     public void deleteById(Integer integer);

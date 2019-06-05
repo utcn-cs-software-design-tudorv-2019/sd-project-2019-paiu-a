@@ -24,6 +24,11 @@ public class Admin {
         return userMessageList;
     }
 
+    public Admin (String name, String email, String information){
+        this.email=email;
+        this.name=name;
+        this.information=information;
+    }
     public void setUserMessageList(List<UserMessage> userMessageList) {
         this.userMessageList = userMessageList;
     }

@@ -30,6 +30,11 @@ public class BasicUser {
     private Admin admin;
 
 
+    public BasicUser (String name, String email, String information){
+        this.email=email;
+        this.name=name;
+        this.information=information;
+    }
     public List<UserBook> getUserBookList() {
         return userBookList;
     }
