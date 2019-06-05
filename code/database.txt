@@ -1,0 +1,94 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `bookdb` DEFAULT CHARACTER SET utf8 ;
+USE `bookdb` ;
+SET SQL_SAFE_UPDATES = 0;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Teacher`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bookdb`.`Admin` (
+  `idAdmin` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(45) NULL UNIQUE,
+  `name` VARCHAR(45) NULL,
+  `information` VARCHAR(105) NULL,
+  PRIMARY KEY (`idAdmin`),
+  UNIQUE INDEX `idAdmin_UNIQUE` (`idAdmin` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Teacher`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bookdb`.`BasicUser` (
+  `idUser` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(45) NULL UNIQUE,
+  `name` VARCHAR(45) NULL,
+  `information` VARCHAR(105) NULL,
+  `Admin_idAdmin` INT NOT NULL,
+  PRIMARY KEY (`idUser`),
+  UNIQUE INDEX `iidUser_UNIQUE` (`idUser` ASC))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Course`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bookdb`.`Message` (
+  `idMessage` INT ZEROFILL NOT NULL AUTO_INCREMENT,
+  `text` VARCHAR(45) NULL UNIQUE,
+  PRIMARY KEY (`idMessage`),
+  UNIQUE INDEX `idMessage_UNIQUE` (`idMessage` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Student`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bookdb`.`Book` (
+  `idBook` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `author` VARCHAR(45) NULL,
+  `aboutTheBook` VARCHAR(105) NULL,
+  PRIMARY KEY (`idBook`),
+  UNIQUE INDEX `idBook_UNIQUE` (`idBook` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Enrollment`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bookdb`.`UserMessage` (
+  `idUserMessage` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `BasicUser_idUser` INT NOT NULL,
+  `Message_idMessage` INT NOT NULL,
+  PRIMARY KEY (`idUserMessage`),
+  UNIQUE INDEX `idUserMessage_UNIQUE` (`idUserMessage` ASC))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Enrollment`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bookdb`.`UserBook` (
+  `idUserBook` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `BasicUser_idUser` INT NOT NULL,
+  `Book_idBook` INT NOT NULL,
+  `dateOfTransaction` VARCHAR(10) NULL,
+  PRIMARY KEY (`idUserBook`),
+  UNIQUE INDEX `idUserBook_UNIQUE` (`idUserBook` ASC))
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
